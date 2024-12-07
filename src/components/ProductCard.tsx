@@ -12,9 +12,9 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 
   const notifyA = () => {
     toast.warn("محصول با موفقیت از سبد خرید شما حذف شد. ", {
-      position: "bottom-left",
+      position: "bottom-right",
       containerId: "A",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -29,7 +29,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     toast.success("محصول با موفقیت به سبد خرید شما اضافه شد. ", {
       position: "bottom-left",
       containerId: "B",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -56,11 +56,11 @@ const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <>
       <div className="w-72 h-72 rounded-lg shadow-2xl p-3">
-        <div>
+        <div className="w-full h-1/2">
           <img
             src={product.img}
             alt={product.name}
-            className="object-cover rounded-t-lg"
+            className="object-cover rounded-t-lg w-full h-full"
           />
         </div>
         <div className="flex items-center justify-between py-3">
@@ -76,7 +76,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           </p>
           <div className="flex justify-center items-center gap-2">
             <button
-              className="w-6 h-6 bg-gray-500 p-3 text-black"
+              className="w-6 h-6 bg-gray-300 pb-1 text-black"
               onClick={handleDecrease}
               disabled={selectedAmount === 0}
             >
@@ -84,7 +84,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             </button>
             <span className="text-lg font-semibold">{selectedAmount}</span>
             <button
-              className="w-6 h-6 bg-orange-500 text-white p-3"
+              className="w-6 h-6 bg-orange-500 pb-1 text-white text-center"
               onClick={handleIncrease}
               disabled={selectedAmount === product.amount}
             >
