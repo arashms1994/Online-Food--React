@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Product } from "./Products";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Props {
   product: Product;
@@ -8,14 +10,46 @@ interface Props {
 const ProductCard: React.FC<Props> = ({ product }) => {
   const [selectedAmount, setSelectedAmount] = useState(0);
 
+  const notifyA = () => {
+    toast.warn("محصول با موفقیت از سبد خرید شما حذف شد. ", {
+      position: "bottom-left",
+      containerId: "A",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Flip,
+    });
+  };
+
+  const notifyB = () => {
+    toast.success("محصول با موفقیت به سبد خرید شما اضافه شد. ", {
+      position: "bottom-left",
+      containerId: "B",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Flip,
+    });
+  };
+
   const handleIncrease = () => {
     if (selectedAmount < product.amount) {
       setSelectedAmount(selectedAmount + 1);
+      notifyB();
     }
   };
   const handleDecrease = () => {
     if (selectedAmount > 0) {
       setSelectedAmount(selectedAmount - 1);
+      notifyA();
     }
   };
 
@@ -56,6 +90,8 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             >
               +
             </button>
+            <ToastContainer containerId="A" position="bottom-left" />
+            <ToastContainer containerId="B" position="bottom-right" />
           </div>
         </div>
       </div>
@@ -64,29 +100,3 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 };
 
 export default ProductCard;
-
-//       {/* دکمه‌های افزایش و کاهش تعداد */}
-//       <div className="flex items-center justify-center gap-4 mt-3">
-//         <button
-//           onClick={handleDecrease}
-//           disabled={selectedAmount === 0}
-//           className={`px-4 py-2 bg-red-500 text-white rounded-lg ${
-//             selectedAmount === 0 ? "opacity-50 cursor-not-allowed" : ""
-//           }`}
-//         >
-//           -
-//         </button>
-//         <span className="text-lg font-bold">{selectedAmount}</span>
-//         <button
-//           onClick={handleIncrease}
-//           disabled={selectedAmount === product.amount}
-//           className={`px-4 py-2 bg-green-500 text-white rounded-lg ${
-//             selectedAmount === product.amount ? "opacity-50 cursor-not-allowed" : ""
-//           }`}
-//         >
-//           +
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
