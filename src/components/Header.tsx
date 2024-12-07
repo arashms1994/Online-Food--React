@@ -2,7 +2,6 @@ function Header() {
   return (
     <>
       <div className="flex justify-between p-6 bg-orange-600 items-center">
-        
         <div className="flex items-center justify-center gap-1">
           <div className="w-8 h-8">
             <img
@@ -19,5 +18,6 @@ function Header() {
     </>
   );
 }
+
 
 export default Header;
