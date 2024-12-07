@@ -1,0 +1,173 @@
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  img: string;
+  price: number;
+  amount: number;
+}
+
+const Products: Product[] = [
+  {
+    id: 1,
+    name: "نوشابه کوکاکولا",
+    description: "بطری کوچک",
+    price: 20000,
+    img: "/src/assets/img/cocacola.jpg",
+    amount: 5,
+  },
+  {
+    id: 2,
+    name: "نوشابه فانتا",
+    description: "بطری کوچک",
+    price: 20000,
+    img: "/src/assets/img/fanta.jpg",
+    amount: 5,
+  },
+  {
+    id: 3,
+    name: "سالاد سزار",
+    description: "",
+    price: 150000,
+    img: "/src/assets/img/saladcesar.jpg",
+    amount: 5,
+  },
+  {
+    id: 4,
+    name: "پاستا پنه",
+    description: "پنه ، گوشت ، سس مخصوص",
+    price: 100000,
+    img: "/src/assets/img/penepasta.jpg",
+    amount: 5,
+  },
+  {
+    id: 5,
+    name: "هات داگ",
+    description: "هات داگ با سس مخصوص",
+    price: 5000,
+    img: "/src/assets/img/hotdog.jpg",
+    amount: 5,
+  },
+  {
+    id: 6,
+    name: "بشقاب فیله",
+    description: "فیله مخصوص، سبزیجات، سس مخصوص",
+    price: 150000,
+    img: "/src/assets/img/pic (1).jpg",
+    amount: 5,
+  },
+  {
+    id: 7,
+    name: "صبحانه استوایی",
+    description: "آووکادو، پنیر، مخلفات",
+    price: 80000,
+    img: "/src/assets/img/pic (2).jpg",
+    amount: 5,
+  },
+  {
+    id: 8,
+    name: "بشقاب پروتیین",
+    description: "گوشت، مرغ، سس مخصوص",
+    price: 250000,
+    img: "/src/assets/img/pic (3).jpg",
+    amount: 5,
+  },
+  {
+    id: 9,
+    name: "میگو سوخاری",
+    description: "میگو، دورچین",
+    price: 150000,
+    img: "/src/assets/img/pic (4).jpg",
+    amount: 5,
+  },
+  {
+    id: 10,
+    name: "کتف و بال کبابی",
+    description: "کتف و بال مرغ، دورچین",
+    price: 150000,
+    img: "/src/assets/img/pic (5).jpg",
+    amount: 5,
+  },
+  {
+    id: 11,
+    name: "پیتزا مخلوط",
+    description: "سوسیس، کالباس، سس مخصوص",
+    price: 120000,
+    img: "/src/assets/img/pic (6).jpg",
+    amount: 5,
+  },
+  {
+    id: 12,
+    name: "تاکو گوشت",
+    description: "گوشت، نان مخصوص، سبزیجات",
+    price: 80000,
+    img: "/src/assets/img/pic (7).jpg",
+    amount: 5,
+  },
+  {
+    id: 13,
+    name: "آناناس کبابی",
+    description: "میوه آناناس گریل شده",
+    price: 40000,
+    img: "/src/assets/img/pic (8).jpg",
+    amount: 5,
+  },
+  {
+    id: 14,
+    name: "استیک",
+    description: "300 گرم گوشت گوسفندی",
+    price: 300000,
+    img: "/src/assets/img/pic (9).jpg",
+    amount: 5,
+  },
+  {
+    id: 15,
+    name: "بشقاب مخصوص",
+    description: "گوشت گوساله، سینه مرغ، برنج و دورچین",
+    price: 250000,
+    img: "/src/assets/img/pic (10).jpg",
+    amount: 5,
+  },
+  {
+    id: 16,
+    name: "چنجه",
+    description: "گوشت گوساله و دورچین",
+    price: 200000,
+    img: "/src/assets/img/pic (11).jpg",
+    amount: 5,
+  },
+  {
+    id: 17,
+    name: "باربیکیو خانواده",
+    description: "مناسب برای 4 نفر",
+    price: 500000,
+    img: "/src/assets/img/pic (12).jpg",
+    amount: 5,
+  },
+  {
+    id: 18,
+    name: "همبرگر مخصوص",
+    description: "گوشت گوساله، سس مخصوص، سیب زمینی",
+    price: 150000,
+    img: "/src/assets/img/pic (13).jpg",
+    amount: 5,
+  },
+  {
+    id: 19,
+    name: "چیزبرگر مخصوص",
+    description: "گوشت گوساله، سس مخصوص، سیب زمینی، پنیر",
+    price: 200000,
+    img: "/src/assets/img/pic (14).jpg",
+    amount: 5,
+  },
+  {
+    id: 20,
+    name: "پیتزا پپرونی",
+    description: "پپرونی وارد شده از تورین",
+    price: 200000,
+    img: "/src/assets/img/pic (15).jpg",
+    amount: 5,
+  },
+];
+
+export default Products;
