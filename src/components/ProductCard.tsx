@@ -26,7 +26,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     setCart((prevCart) => {
       const updatedCart = [...prevCart];
       const exitingIndex = updatedCart.findIndex(
-        (item) => item.product.id === product.id
+        (item) => item?.product?.id === product.id
       );
       if (exitingIndex === -1) {
         updatedCart.push({ product, quantity: 1 });
@@ -41,7 +41,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
     setCart((prevCart) => {
       const updatedCart = [...prevCart];
       const exitingIndex = updatedCart.findIndex(
-        (item) => item.product.id === product.id
+        (item) => item?.product?.id === product.id
       );
       if (exitingIndex !== -1) {
         if (updatedCart[exitingIndex].quantity > 1) {
@@ -127,7 +127,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
           </p>
           <div className="flex justify-center items-center gap-2">
             <button
-              className="w-6 h-6 bg-gray-300 pb-1 text-black"
+              className="w-6 h-6 bg-gray-300 pb-2 text-black rounded"
               onClick={handleDecrease}
               disabled={selectedAmount === 0}
             >
@@ -135,7 +135,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
             </button>
             <span className="text-lg font-semibold">{selectedAmount}</span>
             <button
-              className="w-6 h-6 bg-orange-500 pb-1 text-white text-center"
+              className="w-6 h-6 bg-orange-500 pb-1 text-white text-center rounded"
               onClick={handleIncrease}
               disabled={selectedAmount === product.amount}
             >
