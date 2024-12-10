@@ -4,7 +4,7 @@ import Products, { Product } from "./Products";
 
 const ProductDiv: React.FC = () => {
   return (
-    <div className="flex flex-wrap justify-center items-center gap-4 py-5">
+    <div className="flex flex-wrap justify-center items-center gap-6 py-5">
       {Products.map((product: Product) => (
         <ProductCard key={product.id} product={product} />
       ))}
