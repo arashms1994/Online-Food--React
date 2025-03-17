@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Flip, toast, ToastContainer } from "react-toastify";
-import { Product } from "./Products";
+import React from "react";
+import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useCartStore } from "../store/cartStore";
+import { Product } from "./Products";
 
 const CartSection: React.FC = () => {
-  const [cart, setCart] = useState<{ product: Product; quantity: number }[]>(
-    () => {
-      const savedCart = localStorage.getItem("cart");
-      return savedCart ? JSON.parse(savedCart) : [];
-    }
-  );
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  const { cart, addToCart, removeFromCart } = useCartStore();
 
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
     0
   );
-
-  cart.map((item) => {
-    if (!item || !item.product) {
-      console.error("Invalid item in cart", item);
-      return null;
-    }
-  });
-
-  // ========== Is the cart Empty? ========
 
   if (cart.length === 0) {
     return (
@@ -37,8 +20,6 @@ const CartSection: React.FC = () => {
       </div>
     );
   }
-
-  // ======= React Toastify =========
 
   const notifyA = () => {
     toast.warn("محصول با موفقیت از سبد خرید شما حذف شد.", {
@@ -85,32 +66,13 @@ const CartSection: React.FC = () => {
     );
   };
 
-  // ============ handle Fns ===========
-  const handleIncrease = (id: number) => {
-    setCart((prevCart) => {
-      const updatedCart = [...prevCart];
-      const itemIndex = updatedCart.findIndex((item) => item.product.id === id);
-      if (itemIndex !== -1) {
-        updatedCart[itemIndex].quantity += 1;
-      }
-      return updatedCart;
-    });
+  const handleIncrease = (product: Product) => {
+    addToCart(product);
     notifyB();
   };
 
-  const handleDecrease = (id: number) => {
-    setCart((prevCart) => {
-      const updatedCart = [...prevCart];
-      const itemIndex = updatedCart.findIndex((item) => item.product.id === id);
-      if (itemIndex !== -1) {
-        if (updatedCart[itemIndex].quantity > 1) {
-          updatedCart[itemIndex].quantity -= 1;
-        } else {
-          updatedCart.splice(itemIndex, 1);
-        }
-      }
-      return updatedCart;
-    });
+  const handleDecrease = (productId: number) => {
+    removeFromCart(productId);
     notifyA();
   };
 
@@ -118,32 +80,38 @@ const CartSection: React.FC = () => {
     <div className="w-full p-5 mx-auto mb-3 shadow-lg rounded-lg">
       <h2 className="text-lg font-bold mb-4">سبد خرید</h2>
       <div>
-        {cart.map((item) => (
-          <div
-            key={item.product.id}
-            className="flex items-center justify-between mb-4"
-          >
-            <p className="text-sm">{item.product.name}</p>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => handleIncrease(item.product.id)}
-                className="px-2 py-1 bg-orange-500 text-white rounded"
-              >
-                +
-              </button>
-              <span className="text-sm font-semibold">{item.quantity}</span>
-              <button
-                onClick={() => handleDecrease(item.product.id)}
-                className="px-2 py-1 bg-gray-300 rounded"
-              >
-                -
-              </button>
+        {cart.map((item) => {
+          if (!item || !item.product) {
+            console.error("Invalid item in cart", item);
+            return null;
+          }
+          return (
+            <div
+              key={item.product.id}
+              className="flex items-center justify-between mb-4"
+            >
+              <p className="text-sm">{item.product.name}</p>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleIncrease(item.product)}
+                  className="px-2 py-1 bg-orange-500 text-white rounded"
+                >
+                  +
+                </button>
+                <span className="text-sm font-semibold">{item.quantity}</span>
+                <button
+                  onClick={() => handleDecrease(item.product.id)}
+                  className="px-2 py-1 bg-gray-300 rounded"
+                >
+                  -
+                </button>
+              </div>
+              <p className="text-sm">
+                {(item.product.price * item.quantity).toLocaleString()} تومان
+              </p>
             </div>
-            <p className="text-sm">
-              {item.product.price.toLocaleString()} تومان
-            </p>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className="border-t pt-4 mt-4">
         <p className="font-bold">جمع کل: {totalPrice.toLocaleString()} تومان</p>
@@ -154,8 +122,6 @@ const CartSection: React.FC = () => {
       >
         ثبت سفارش
       </button>
-      <ToastContainer containerId="A" position="bottom-left" />
-      <ToastContainer containerId="B" position="bottom-right" />
     </div>
   );
 };
